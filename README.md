@@ -8,7 +8,7 @@ npm install scoped-fs
 
 ## Usage
 
-```
+```js
 var ScopedFS = require('scoped-fs')
 
 var fs = new ScopedFS('/home/bob')
