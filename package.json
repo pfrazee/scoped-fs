@@ -1,0 +1,28 @@
+{
+  "name": "scoped-fs",
+  "version": "1.0.0",
+  "description": "An FS wrapper that keeps all access scoped to a specific folder.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfrazee/scoped-fs.git"
+  },
+  "keywords": [
+    "files",
+    "fs",
+    "scoped"
+  ],
+  "author": "Paul Frazee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pfrazee/scoped-fs/issues"
+  },
+  "homepage": "https://github.com/pfrazee/scoped-fs#readme",
+  "devDependencies": {
+    "standard": "^10.0.2",
+    "tape": "^4.6.3"
+  }
+}
