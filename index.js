@@ -14,10 +14,10 @@ class ScopedFS {
     return fs.createReadStream(name, opts)
   }
 
-  readFile (name, opts, cb) {
+  readFile (name, ...args) {
     name = join(this.base, name)
     if (!name) return cb(new Error('Invalid path'))
-    return fs.readFile(name, opts, cb)
+    return fs.readFile(name, ...args)
   }
 
   createWriteStream (name, opts) {
@@ -26,16 +26,16 @@ class ScopedFS {
     return fs.createWriteStream(name, opts)
   }
 
-  writeFile (name, opts, cb) {
+  writeFile (name, ...args) {
     name = join(this.base, name)
     if (!name) return cb(new Error('Invalid path'))
-    return fs.writeFile(name, opts, cb)
+    return fs.writeFile(name, ...args)
   }
 
-  mkdir (name, opts, cb) {
+  mkdir (name, ...args) {
     name = join(this.base, name)
     if (!name) return cb(new Error('Invalid path'))
-    return fs.mkdir(name, opts, cb)
+    return fs.mkdir(name, ...args)
   }
 
   access (name, cb) {
