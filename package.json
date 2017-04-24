@@ -1,6 +1,6 @@
 {
   "name": "scoped-fs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An FS wrapper that keeps all access scoped to a specific folder.",
   "main": "index.js",
   "scripts": {
