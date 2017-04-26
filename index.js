@@ -81,8 +81,9 @@ class ScopedFS {
     return fs.rmdir(name, cb)
   }
 
-  watch (fn) {
-    return watch(path => {
+  watch (name, fn) {
+    name = join(this.base, name)
+    return watch(name, path => {
       fn(unjoin(this.base, name))
     })
   }
