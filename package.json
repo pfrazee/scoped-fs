@@ -24,5 +24,8 @@
   "devDependencies": {
     "standard": "^10.0.2",
     "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "recursive-watch": "^1.1.1"
   }
 }

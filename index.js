@@ -1,7 +1,8 @@
-var path = require('path')
-var fs = require('fs')
+const path = require('path')
+const fs = require('fs')
+const watch = require('recursive-watch')
 
-var UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/
+const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/
 
 class ScopedFS {
   constructor (basepath) {
@@ -79,6 +80,12 @@ class ScopedFS {
     if (!name) return cb(new Error('Invalid path'))
     return fs.rmdir(name, cb)
   }
+
+  watch (fn) {
+    return watch(path => {
+      fn(unjoin(this.base, name))
+    })
+  }
 }
 module.exports = ScopedFS
 
@@ -88,4 +95,9 @@ function join (rootpath, subpath) {
     return false
   }
   return path.normalize(path.join(rootpath, subpath))
+}
+
+function unjoin (rootpath, subpath) {
+  subpath = subpath.slice(rootpath.length)
+  return (subpath.charAt(0) === '/') ? subpath : ('/' + subpath)
 }

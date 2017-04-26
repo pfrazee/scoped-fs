@@ -38,3 +38,7 @@ Creates a scoped FS instance. All reads and writes will be restricted to `basepa
  - readdir
  - unlink
  - rmdir
+
+#### `var stopwatch = sfs.watch(fn)`
+
+Create a [recursive-watch](https://github.com/mafintosh/recursive-watch) instance.
