@@ -83,8 +83,8 @@ class ScopedFS {
 
   watch (name, fn) {
     name = join(this.base, name)
-    return watch(name, path => {
-      fn(unjoin(this.base, name))
+    return watch(name, changedPath => {
+      fn(unjoin(this.base, changedPath))
     })
   }
 }
