@@ -4,9 +4,9 @@ const watch = require('recursive-watch')
 
 const UP_PATH_REGEXP = /(?:^|[\\/])\.\.(?:[\\/]|$)/
 
-const METHODS = ['createReadStream', 'readFile', 'createWriteStream',
-                 'writeFile', 'mkdir', 'access', 'exists', 'lstat', 'stat',
-                 'readdir', 'unlink', 'rmdir']
+const ASYNC_METHODS = ['access', 'exists', 'mkdir', 'lstat', 'readdir',
+                       'readFile', 'rmdir', 'stat', 'unlink', 'writeFile']
+const SYNC_METHODS = ['createReadStream', 'createWriteStream']
 
 
 class ScopedFS {
@@ -22,12 +22,24 @@ class ScopedFS {
   }
 }
 
-METHODS.forEach(function(name)
+ASYNC_METHODS.forEach(function(name)
 {
   ScopedFS.prototype[name] = function(path, ...args)
   {
     path = join(this.base, path)
     if(!path) return args[args.length-1](new Error('Invalid path'))
+
+    fs[name](path, ...args)
+  }
+})
+
+SYNC_METHODS.forEach(function(name)
+{
+  ScopedFS.prototype[name] = function(path, ...args)
+  {
+    path = join(this.base, path)
+    if(!path) throw new Error('Invalid path')
+
     return fs[name](path, ...args)
   }
 })
