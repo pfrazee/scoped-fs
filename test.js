@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var test = require('tape')
 var fs = require('fs')
 var ScopedFS = require('./index')
