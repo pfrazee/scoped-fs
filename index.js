@@ -100,5 +100,5 @@ function join (rootpath, subpath) {
 
 function unjoin (rootpath, subpath) {
   subpath = subpath.slice(rootpath.length)
-  return (subpath.charAt(0) === '/') ? subpath : ('/' + subpath)
+  return (subpath.charAt(0) === path.sep) ? subpath : (path.sep + subpath)
 }
