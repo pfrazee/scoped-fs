@@ -4,7 +4,7 @@
   "description": "An FS wrapper that keeps all access scoped to a specific folder.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava -s test.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/pfrazee/scoped-fs#readme",
   "devDependencies": {
+    "ava": "^0.25.0",
+    "fs-jetpack": "^2.1.1",
     "standard": "^10.0.2",
-    "tape": "^4.6.3"
+    "tempy": "^0.2.1"
   },
   "dependencies": {
     "recursive-watch": "^1.1.1"
