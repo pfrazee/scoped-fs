@@ -12,6 +12,9 @@ test('Reads are constrained to the given dir', async t => {
   t.is(await sfs.readFile('index.js', 'utf8'), indexjs)
   t.is(await sfs.readFile('/index.js', 'utf8'), indexjs)
   await t.throws(sfs.readFile('../index.js', 'utf8'))
+  t.is(sfs.readFileSync('index.js', 'utf8'), indexjs)
+  t.is(sfs.readFileSync('/index.js', 'utf8'), indexjs)
+  t.throws(() => sfs.readFileSync('../index.js', 'utf8'))
 })
 
 test('Filtering test', async t => {
@@ -23,9 +26,11 @@ test('Filtering test', async t => {
 
   t.truthy(await sfs.readFile('/foo.txt'), 'readFile(/foo.txt)')
   await t.throws(sfs.readFile('/sub/bar.txt'), false, 'readFile(/sub/bar.txt)')
-  
+
   await sfs.writeFile('/bar.txt', 'bar')
   await t.throws(sfs.writeFile('/sub/bar.txt', 'bar'), false, '/writeFile(/sub/bar.txt)')
+  sfs.writeFileSync('/bar.txt', 'bar')
+  t.throws(() => sfs.writeFileSync('/sub/bar.txt', 'bar'), false, '/writeFile(/sub/bar.txt)')
   
   await sfs.mkdir('/subdir2')
   await t.throws(sfs.mkdir('/subdir3'), false, 'mkdir(/subdir3)')

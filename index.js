@@ -34,6 +34,13 @@ class ScopedFS {
     return fs.readFile(name, ...args)
   }
 
+  readFileSync (name, ...args) {
+    name = join(this.base, name)
+    if (!name) throw new Error('Invalid path')
+    if (!this._filter(name)) throw createNotFoundError()
+    return fs.readFileSync(name, ...args)
+  }
+
   createWriteStream (name, opts) {
     name = join(this.base, name)
     if (!name) throw new Error('Invalid path')
@@ -47,6 +54,13 @@ class ScopedFS {
     if (!name) return cb(new Error('Invalid path'))
     if (!this._filter(name)) return cb(createPermError())
     return fs.writeFile(name, ...args)
+  }
+
+  writeFileSync (name, ...args) {
+    name = join(this.base, name)
+    if (!name) throw new Error('Invalid path')
+    if (!this._filter(name)) throw createPermError()
+    return fs.writeFileSync(name, ...args)
   }
 
   mkdir (name, ...args) {
