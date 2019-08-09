@@ -71,12 +71,15 @@ class ScopedFS {
     return fs.mkdir(name, ...args)
   }
 
-  symlink (name, ...args) {
-    name = join(this.base, name)
+  symlink (name1, name2, ...args) {
+    name1 = join(this.base, name1)
+    name2 = join(this.base, name2)
     var cb = args[args.length - 1]
-    if (!name) return cb(new Error('Invalid path'))
-    if (!this._filter(name)) return cb(createPermError())
-    return fs.symlink(name, ...args)
+    if (!name1) return cb(new Error('Invalid path'))
+    if (!name2) return cb(new Error('Invalid path'))
+    if (!this._filter(name1)) return cb(createPermError())
+    if (!this._filter(name2)) return cb(createPermError())
+    return fs.symlink(name1, name2, ...args)
   }
 
   access (name, cb) {
