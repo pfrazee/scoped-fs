@@ -31,6 +31,7 @@ Creates a scoped FS instance. All reads and writes will be restricted to `basepa
  - createWriteStream
  - writeFile
  - mkdir
+ - symlink
  - access
  - exists
  - lstat
